@@ -58,7 +58,7 @@
 
             http.role.query({
                 succ : function (rs) {
-                    self.roleList = rs
+                    self.roleList = rs.list
                 },
                 err : function (msg) {
                     console.log(msg)

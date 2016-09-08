@@ -46,7 +46,8 @@
 		vuex : {
 			getters : {
 				pagingTotal : commonGetters.pagingTotal,
-				pagingPage : commonGetters.pagingPage
+				pagingPage : commonGetters.pagingPage,
+				routerName : commonGetters.getRouterName //根据路由名加载相应表单
 			},
 			actions : {
 				setPagingPage : commonActions.setPagingPage

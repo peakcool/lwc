@@ -28,14 +28,6 @@
         "description": "游客",
         "created_at": "2016-06-20 13:40:03",
         "updated_at": "2016-06-20 13:40:03"
-      },
-      {
-        "id": 4,
-        "name": "test",
-        "display_name": "tt",
-        "description": "ttdesc",
-        "created_at": "2016-08-09 11:14:13",
-        "updated_at": "2016-08-09 11:14:13"
       }
     ]
   }

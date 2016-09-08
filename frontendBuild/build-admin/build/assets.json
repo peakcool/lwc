@@ -1,12 +1,12 @@
 {
   "main": [
-    "build.88ea5a1bc95ddbedaa32.js",
-    "style.88ea5a1bc95ddbedaa32.css",
-    "build.88ea5a1bc95ddbedaa32.js.map",
-    "style.88ea5a1bc95ddbedaa32.css.map"
+    "build.js",
+    "style.css",
+    "build.js.map",
+    "style.css.map"
   ],
-  "vendor.[hash].js": [
-    "vendor.88ea5a1bc95ddbedaa32.js",
-    "vendor.88ea5a1bc95ddbedaa32.js.map"
+  "vendor.js": [
+    "vendor.js",
+    "vendor.js.map"
   ]
 }
