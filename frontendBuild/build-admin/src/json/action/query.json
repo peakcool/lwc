@@ -1,0 +1,277 @@
+{
+    "status" : 200,
+    "msg" : "MSG",
+    "data":[
+        {
+            "id":14,
+            "group":"menu",
+            "name":"保存菜单",
+            "action":"http://localhost:8080/#!/actions",
+            "description":"保存菜单",
+            "state":1,
+            "created_at":"2016-06-24 17:10:59",
+            "updated_at":"2016-06-24 17:10:59"
+        },
+        {
+            "id":15,
+            "group":"menu",
+            "name":"显示菜单",
+            "action":"http://localhost:8080/#!/actions",
+            "description":"显示菜单",
+            "state":1,
+            "created_at":"2016-06-24 17:11:17",
+            "updated_at":"2016-06-24 17:11:17"
+        },
+        {
+            "id":16,
+            "group":"menu",
+            "name":"修改菜单",
+            "action":"http://localhost:8080/#!/actions",
+            "description":"修改菜单",
+            "state":1,
+            "created_at":"2016-06-24 17:11:28",
+            "updated_at":"2016-06-24 17:11:28"
+        },
+        {
+            "id":17,
+            "group":"menu",
+            "name":"删除菜单",
+            "action":"http://localhost:8080/#!/actions",
+            "description":"删除菜单",
+            "state":1,
+            "created_at":"2016-06-24 17:11:39",
+            "updated_at":"2016-06-24 17:11:39"
+        },
+        {
+            "id":18,
+            "group":"user",
+            "name":"保存用户",
+            "action":"http://localhost:8080/#!/actions",
+            "description":"保存用户",
+            "state":1,
+            "created_at":"2016-06-24 17:13:38",
+            "updated_at":"2016-06-24 17:13:38"
+        },
+        {
+            "id":19,
+            "group":"user",
+            "name":"显示用户",
+            "action":"http://localhost:8080/#!/actions",
+            "description":"显示用户",
+            "state":1,
+            "created_at":"2016-06-24 17:13:51",
+            "updated_at":"2016-06-24 17:13:51"
+        },
+        {
+            "id":20,
+            "group":"user",
+            "name":"修改用户",
+            "action":"",
+            "description":"修改用户",
+            "state":1,
+            "created_at":"2016-06-24 17:14:08",
+            "updated_at":"2016-06-24 17:14:08"
+        },
+        {
+            "id":21,
+            "group":"user",
+            "name":"删除用户",
+            "action":"",
+            "description":"删除用户",
+            "state":1,
+            "created_at":"2016-06-24 17:14:16",
+            "updated_at":"2016-06-24 17:14:16"
+        },
+        {
+            "id":22,
+            "group":"role",
+            "name":"角色关联权限",
+            "action":"",
+            "description":"角色关联权限",
+            "state":1,
+            "created_at":"2016-06-24 17:22:47",
+            "updated_at":"2016-06-24 17:22:47"
+        },
+        {
+            "id":23,
+            "group":"role",
+            "name":"保存角色",
+            "action":"",
+            "description":"保存角色",
+            "state":1,
+            "created_at":"2016-06-24 17:23:06",
+            "updated_at":"2016-06-24 17:23:06"
+        },
+        {
+            "id":24,
+            "group":"role",
+            "name":"显示角色",
+            "action":"",
+            "description":"显示角色",
+            "state":1,
+            "created_at":"2016-06-24 17:23:19",
+            "updated_at":"2016-06-24 17:23:19"
+        },
+        {
+            "id":25,
+            "group":"role",
+            "name":"修改角色",
+            "action":"",
+            "description":"修改角色",
+            "state":1,
+            "created_at":"2016-06-24 17:23:31",
+            "updated_at":"2016-06-24 17:23:31"
+        },
+        {
+            "id":26,
+            "group":"role",
+            "name":"删除角色",
+            "action":"",
+            "description":"删除角色",
+            "state":1,
+            "created_at":"2016-06-24 17:23:45",
+            "updated_at":"2016-06-24 17:23:45"
+        },
+        {
+            "id":27,
+            "group":"permission",
+            "name":"权限关联菜单",
+            "action":"",
+            "description":"权限关联菜单",
+            "state":1,
+            "created_at":"2016-06-24 17:24:03",
+            "updated_at":"2016-06-24 17:24:03"
+        },
+        {
+            "id":28,
+            "group":"permission",
+            "name":"权限关联操作",
+            "action":"",
+            "description":"权限关联操作",
+            "state":1,
+            "created_at":"2016-06-24 17:24:15",
+            "updated_at":"2016-06-24 17:24:15"
+        },
+        {
+            "id":29,
+            "group":"permission",
+            "name":"保存权限",
+            "action":"",
+            "description":"保存权限",
+            "state":1,
+            "created_at":"2016-06-24 17:26:30",
+            "updated_at":"2016-06-24 17:26:30"
+        },
+        {
+            "id":30,
+            "group":"permission",
+            "name":"显示权限",
+            "action":"",
+            "description":"显示权限",
+            "state":1,
+            "created_at":"2016-06-24 17:26:42",
+            "updated_at":"2016-06-24 17:26:42"
+        },
+        {
+            "id":31,
+            "group":"permission",
+            "name":"修改权限",
+            "action":"",
+            "description":"修改权限",
+            "state":1,
+            "created_at":"2016-06-24 17:26:54",
+            "updated_at":"2016-06-24 17:26:54"
+        },
+        {
+            "id":32,
+            "group":"permission",
+            "name":"删除权限",
+            "action":"",
+            "description":"删除权限",
+            "state":1,
+            "created_at":"2016-06-24 17:27:04",
+            "updated_at":"2016-06-24 17:27:04"
+        },
+        {
+            "id":33,
+            "group":"action",
+            "name":"保存操作",
+            "action":"",
+            "description":"保存操作",
+            "state":1,
+            "created_at":"2016-06-24 17:28:02",
+            "updated_at":"2016-06-24 17:28:02"
+        },
+        {
+            "id":34,
+            "group":"action",
+            "name":"显示操作",
+            "action":"",
+            "description":"显示操作",
+            "state":0,
+            "created_at":"2016-06-24 17:28:11",
+            "updated_at":"2016-06-24 17:28:44"
+        },
+        {
+            "id":35,
+            "group":"action",
+            "name":"修改操作",
+            "action":"",
+            "description":"修改操作",
+            "state":0,
+            "created_at":"2016-06-24 17:28:20",
+            "updated_at":"2016-06-24 17:28:49"
+        },
+        {
+            "id":36,
+            "group":"action",
+            "name":"删除操作",
+            "action":"",
+            "description":"删除操作",
+            "state":1,
+            "created_at":"2016-06-24 17:29:19",
+            "updated_at":"2016-06-24 17:29:19"
+        },
+        {
+            "id":37,
+            "group":"log",
+            "name":"删除日志",
+            "action":"",
+            "description":"删除日志",
+            "state":1,
+            "created_at":"2016-06-24 17:29:30",
+            "updated_at":"2016-06-24 17:29:30"
+        },
+        {
+            "id":38,
+            "group":"menu",
+            "name":"显示日志",
+            "action":"",
+            "description":"显示日志",
+            "state":1,
+            "created_at":"2016-06-24 17:29:40",
+            "updated_at":"2016-06-24 17:29:40"
+        },
+        {
+            "id":39,
+            "group":"menu",
+            "name":"下载日志",
+            "action":"",
+            "description":"下载日志",
+            "state":1,
+            "created_at":"2016-06-24 17:29:47",
+            "updated_at":"2016-06-24 17:29:47"
+        },
+        {
+            "id":40,
+            "group":"menu",
+            "name":"日志等级",
+            "action":"",
+            "description":"日志等级",
+            "state":1,
+            "created_at":"2016-06-24 17:30:07",
+            "updated_at":"2016-06-24 17:30:07"
+        }
+    ]
+}
+

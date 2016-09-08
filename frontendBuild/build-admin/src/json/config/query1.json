@@ -1,0 +1,182 @@
+{
+  "status": 200,
+  "msg": "",
+  "data": [
+    {
+      "id": 23,
+      "parent_id": 0,
+      "icon": "fa fa-tachometer",
+      "name": "lwc.index.index",
+      "route": "admin",
+      "description": "后台首页",
+      "sort": 0,
+      "hide": 0,
+      "created_at": "2016-06-12 21:32:14",
+      "updated_at": "2016-06-12 21:45:16",
+      "child_list": []
+    },
+    {
+      "id": 24,
+      "parent_id": 0,
+      "icon": "fa fa-cogs",
+      "name": "lwc.system.group",
+      "route": "",
+      "description": "系统配置",
+      "sort": 1,
+      "hide": 0,
+      "created_at": "2016-06-13 09:45:49",
+      "updated_at": "2016-06-13 09:45:49",
+      "child_list": [
+        {
+          "id": 1,
+          "parent_id": 24,
+          "icon": "fa fa-list-alt",
+          "name": "lwc.menu.group",
+          "route": "menu",
+          "description": "菜单管理",
+          "sort": 2,
+          "hide": 0,
+          "created_at": "2016-05-03 19:55:02",
+          "updated_at": "2016-08-03 18:01:35"
+        },
+        {
+          "id": 11,
+          "parent_id": 24,
+          "icon": "fa fa-user",
+          "name": "lwc.user.group",
+          "route": "user",
+          "description": "用户管理",
+          "sort": 3,
+          "hide": 0,
+          "created_at": "2016-05-31 09:18:59",
+          "updated_at": "2016-06-02 15:33:29"
+        },
+        {
+          "id": 17,
+          "parent_id": 24,
+          "icon": "fa fa-users",
+          "name": "lwc.role.group",
+          "route": "role",
+          "description": "角色管理",
+          "sort": 4,
+          "hide": 0,
+          "created_at": "2016-06-12 09:51:26",
+          "updated_at": "2016-06-12 09:51:26"
+        },
+        {
+          "id": 20,
+          "parent_id": 24,
+          "icon": "fa fa-check",
+          "name": "lwc.permission.group",
+          "route": "permission",
+          "description": "权限管理",
+          "sort": 5,
+          "hide": 0,
+          "created_at": "2016-06-12 10:00:44",
+          "updated_at": "2016-06-12 10:00:44"
+        },
+        {
+          "id": 51,
+          "parent_id": 24,
+          "icon": "fa fa-keyboard-o",
+          "name": "lwc.action.group",
+          "route": "action",
+          "description": "操作管理",
+          "sort": 6,
+          "hide": 0,
+          "created_at": "2016-06-24 15:41:28",
+          "updated_at": "2016-06-24 15:43:06"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "parent_id": 0,
+      "icon": "fa fa-gitlab",
+      "name": "lwc.pos.group",
+      "route": "pos",
+      "description": "pos管理",
+      "sort": 7,
+      "hide": 0,
+      "created_at": "2016-06-24 17:21:24",
+      "updated_at": "2016-06-24 17:21:24",
+      "child_list": [
+        {
+          "id": 62,
+          "parent_id": 59,
+          "icon": "fa fa-file-text-o",
+          "name": "lwc.pos.param",
+          "route": "pos-param",
+          "description": "参数设置",
+          "sort": 10,
+          "hide": 0,
+          "created_at": "2016-06-24 17:21:24",
+          "updated_at": "2016-06-24 17:21:24"
+        },
+        {
+          "id": 63,
+          "parent_id": 59,
+          "icon": "fa fa-copy",
+          "name": "lwc.pos.group",
+          "route": "pos-group",
+          "description": "分组管理",
+          "sort": 11,
+          "hide": 0,
+          "created_at": "2016-06-24 17:21:24",
+          "updated_at": "2016-06-24 17:21:24"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "parent_id": 0,
+      "icon": "fa fa-paw",
+      "name": "lwc.store.group",
+      "route": "store",
+      "description": "门店管理",
+      "sort": 8,
+      "hide": 0,
+      "created_at": "2016-06-24 17:21:24",
+      "updated_at": "2016-06-24 17:21:24",
+      "child_list": [
+        {
+          "id": 64,
+          "parent_id": 60,
+          "icon": "fa fa-file-text-o",
+          "name": "lwc.store.message",
+          "route": "store-message",
+          "description": "信息设置",
+          "sort": 12,
+          "hide": 0,
+          "created_at": "2016-06-24 17:21:24",
+          "updated_at": "2016-06-24 17:21:24"
+        },
+        {
+          "id": 65,
+          "parent_id": 60,
+          "icon": "fa fa-th",
+          "name": "lwc.store.area",
+          "route": "store-area",
+          "description": "区域管理",
+          "sort": 13,
+          "hide": 0,
+          "created_at": "2016-06-24 17:21:24",
+          "updated_at": "2016-06-24 17:21:24"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "parent_id": 0,
+      "icon": "fa fa-diamond",
+      "name": "lwc.product.group",
+      "route": "product",
+      "description": "商品管理",
+      "sort": 9,
+      "hide": 0,
+      "created_at": "2016-06-24 17:21:24",
+      "updated_at": "2016-06-24 17:21:24",
+      "child_list": []
+    }
+  ]
+}
