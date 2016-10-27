@@ -63,16 +63,17 @@
     <div class="material-button" @click="showSideBar()" v-bind:class="{'hide-btn' : componentState}">
         <span class="shape"></span>
     </div>
-    <sidebar></sidebar>
+    <lwc-sidebar></lwc-sidebar>
 </template>
 <script>
 
-var addFormActions = require('../../vuex/addForm/actions.js') 
-var addFormGetters = require('../../vuex/addForm/getters.js')
-var commonActions    = require('../../vuex/common/actions.js')
+var addFormActions = require('../../vuex/addForm/actions.js'); 
+var addFormGetters = require('../../vuex/addForm/getters.js');
+var commonActions    = require('../../vuex/common/actions.js');
+
 module.exports = {
     components : {
-    	"sidebar" : require('./SideBar.vue')
+    	"lwc-sidebar" : require('./SideBar.vue')
     },
     vuex : {
     	actions : {

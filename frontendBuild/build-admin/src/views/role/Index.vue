@@ -114,9 +114,9 @@
             });
 		},
 		route : {
-			data : function (transition) {
-				this.queryMenu()
-			},
+			// data : function (transition) {
+			// 	this.queryMenu()
+			// },
 	        activate(transition) {
 	            this.saveRouter(this.$route.name);
 	            transition.next();

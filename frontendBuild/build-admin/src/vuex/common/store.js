@@ -1,7 +1,7 @@
 //创建对象来保存应用启动时的初始数据
 var state = {
 	fixmodelState : false, //common/FixModel.vuex组件的状态［true:显示状态,false:关闭状态］
-	routerName : " ", //页面路由名
+	routerName : "menu", //页面路由名,默认为菜单MENU
 	paging : {
 		total : 0,//总页数
 		page : 1 ,//当前页数
@@ -106,7 +106,7 @@ var mutations = {
 	 */
 	SET_COMMON_SETTING : function (state, setting) {
 
-		console.log('store:', setting);
+		// console.log('store:', setting);
 		state.setting = setting;
 	}
 };

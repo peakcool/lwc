@@ -11,7 +11,7 @@ use App\Models\Action;
 class ActionController extends Controller
 {
     /**
-     * init user model
+     * init action model
      */
     function __construct() {
         $this->action = new Action;

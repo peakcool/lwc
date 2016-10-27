@@ -35,7 +35,7 @@ module.exports = {
 
 	//获取配置对象
 	getCommonSetting : function(state) {
-		console.log("getters:",state.common.setting);
+		// console.log("getters:",state.common.setting);
 		return state.common.setting;
 	},
 

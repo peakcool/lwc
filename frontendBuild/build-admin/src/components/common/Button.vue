@@ -1,6 +1,3 @@
-<style>
-	
-</style>
 <template>
 		
 		<!--赋权按钮-->

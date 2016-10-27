@@ -19,9 +19,7 @@
 	display: none;
 }
 
-.text-right {
-	margin-bottom: 30px;
-}
+
 </style>
 <template>
     <div class="side-bar animated col-md-12" v-bind:class="{'slideInRight' : componentState, 'slideInLeft' : !componentState}">
@@ -30,15 +28,7 @@
         </lwc-title>
         <div class="widget">
             <div class="widget-body">
-                <form action="{ path: '{{routerName}}'}" method="POST">
-                    <slot>
-                    	<component :is="routerName"></component>
-                    </slot>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-success">提交</button>
-                        <button type="reset" class="btn btn-black" @click="showSideBar(false)">取消</button>
-                    </div>
-                </form>
+                <component :is="routerName"></component>
             </div>
         </div>
     </div>
@@ -55,12 +45,9 @@ module.exports =  {
     	'action' : require('../form/actionForm.vue'),
     	'role' : require('../form/roleForm.vue'),
     	'permission' : require('../form/permissionForm.vue'),
-        'lwc-title' : require("./Title.vue")
+        'lwc-title' : require("./Title.vue"),
     },
     vuex : {
-    	actions : {
-    		showSideBar : addFormActions.toggleSideBarState
-    	},
     	getters : {
 			componentState : addFormGetters.sideBarState, //组件状态,true为伸状态，false为缩状态
 			routerName : commonGetters.getRouterName, //根据路由名加载相应表单

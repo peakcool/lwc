@@ -60,7 +60,7 @@ module.exports = {
      * @param {[object]} setting [配置]
      */
     setCommonSetting : function (store, setting) {
-        console.log('actions:', setting);
+        // console.log('actions:', setting);
     	return store.dispatch('SET_COMMON_SETTING', setting);
     },
 

@@ -1,4 +1,7 @@
 module.exports = {
+    go : function(rou){
+        window.location.href = '#!/' + rou;
+    },
     /**
      * 价格／浮点数验证
      */
@@ -14,7 +17,7 @@ module.exports = {
      */
     isTitle: function(str) {
         str += '';
-        if(str.length >= 6 && str.length <= 32){
+        if(str.length >= 2 && str.length <= 32){
             return true;
         }else{
             return false;

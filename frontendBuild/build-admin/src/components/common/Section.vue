@@ -37,7 +37,7 @@
 	    </div> <!-- content -->
 
 	    <!--悬浮添加按钮-->
-		<add-btn></add-btn>
+		<lwc-add-btn></lwc-add-btn>
 	</div>
 </template>
 <script>
@@ -51,7 +51,7 @@
 			}
 		},
 		components : {
-            'add-btn' : require('./addBtn.vue')
+            'lwc-add-btn' : require('./AddBtn.vue')
         },
 		vuex : {
 			getters : {
@@ -64,12 +64,6 @@
 			window.onresize = function(){
 				self.height = document.body.clientHeight;
 			};
-
-			var self = this;
-			this.$watch('componentState', function(v){
-				console.log(v);
-			});
-
 		}
 	}
 </script>

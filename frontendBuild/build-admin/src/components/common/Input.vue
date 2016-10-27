@@ -2,7 +2,7 @@
 	<div class="form-horizontal"> 
 		<div class="form-group has-feedback" 
 	  		:class="{'has-success' : status == 1,'has-error' : status == -1}"> 
-			<div class="col-sm-8"> 
+			<div class="col-sm-10"> 
                 <!-- 多行输入框 start -->
                 <textarea 
                 	class="form-control" 
@@ -79,7 +79,7 @@
 				this.type = 'text';
 			}
 			if(this.holder == undefined){
-				this.holder = '请输入...';
+				this.holder = '';
 			}
 			if(this.verify == undefined){
 				this.verify = 'isTitle';
@@ -95,7 +95,7 @@
 			*/
 			blur : function(){
 				if(!this.isActivated){
-					this.isActivated = true;//激活判断
+					this.isActivated = false;//激活判断
 				}
 				//验证的判断
 				this.isOK = this.verFunc(this.value);

@@ -85,31 +85,61 @@ module.exports = {
     user : {
         query: function (param) {
             paramParse('query', ['user'], param);
+        },
+        create : function(param){
+            paramParse('create',['user'], param);
+        },
+        save : function(param){
+            paramParse('save',['user'], param);
         }
     },
     role : {
         query : function(param){
-            paramParse('query',['role'],param);
+            paramParse('query',['role'], param);
+        },
+        create : function(param){
+            paramParse('create',['role'], param);
+        },
+        save : function(param){
+            paramParse('save',['role'], param);
         }
     },
     permission : {
         query : function(param){
-            paramParse('query',['permission'],param);
+            paramParse('query',['permission'], param);
+        },
+        create : function(param){
+            paramParse('create',['permission'], param);
+        },
+        save : function(param){
+            paramParse('save',['permission'], param);
         }
     },
     action : {
         query : function(param){
-            paramParse('query',['action'],param);
+            paramParse('query',['action'], param);
+        },
+        create : function(param){
+            paramParse('create',['action'], param);
+        },
+        save : function(param){
+            paramParse('save',['action'], param);
         }
     },
     menu : {
         query : function(param){
-            paramParse('query',['menu'],param);
+            paramParse('query',['menu'], param);
+        },
+        create : function(param){
+            paramParse('create',['menu'], param);
+        },
+        save : function(param){
+            paramParse('save',['menu'], param);
         }
     },
     config : {
         query : function(param){
-            paramParse('query',['config'],param);
+            paramParse('query',['config'], param);
         }
     }
 }
