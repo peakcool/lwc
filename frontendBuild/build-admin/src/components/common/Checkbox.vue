@@ -38,7 +38,7 @@
 var http = require('../../utils/HttpHelper.js');
 
 module.exports = {
-    props: ['value'],
+    props: ['value','oldvalue'],
     data: function() {
         return {
             idModel: [], //id list
@@ -46,12 +46,15 @@ module.exports = {
         }
     },
     ready : function (){
+
     	this.$watch('idModel', function (v){ //监听选中列表
     		var checkbox = [];
     		if(eval(v).length <= 0){
     			this.nameModel = checkbox;
     			return
     		}
+        console.log(this.oldvalue);
+            
     		for(var i in v){ //选中checkbox id => name
     			$.each(this.value,function(k,el){
     				if (v[i] == el.id) {

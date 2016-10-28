@@ -115,112 +115,25 @@
             <!--- Divider -->
 	            <div id="sidebar-menu">
 	                <ul>
-	                	<li class="has_sub" v-for="menu in menus">
-	                		<a class="waves-effect" v-if=" menu.route == 'admin'" href="#!/{{ menu.route }}">
-	                        	<i v-bind:class="menu.icon"></i> 
-	                        	<span>{{ menu.description }}</span>
+	                	<li class="has_sub" v-for="l1 in l1_arr">
+	                		<a class="waves-effect" v-if=" l1.route == 'admin'" href="#!/{{ l1.route }}">
+	                        	<i v-bind:class="l1.icon"></i> 
+	                        	<span>{{ l1.description }}</span>
 	                        </a>
 	                		<a class="waves-effect" @click="showMenu" v-else>
-	                        	<i v-bind:class="menu.icon"></i> 
-	                        	<span>{{ menu.description }}</span>
+	                        	<i v-bind:class="l1.icon"></i> 
+	                        	<span>{{ l1.description }}</span>
 	                        	<i class="fa showhide fa-angle-down"></i>
 	                        </a>
 	                        <ul class="menu-child">
-                        		<li class="has_sub" v-for="m_child in menu.child_list">
-	                        		<a href="#!/{{ m_child.route }}">
-	                        			<i v-bind:class="m_child.icon "></i> 
-	                        			<span>{{ m_child.description}}</span>
+                        		<li class="has_sub" v-for="l2 in l2_arr" v-if="l1.id == l2.parent_id">
+	                        		<a href="#!/{{ l2.route }}">
+	                        			<i v-bind:class="l2.icon "></i> 
+	                        			<span>{{ l2.description}}</span>
 	                        		</a>
                         		</li>
                         	</ul>
 	                	</li>
-<!-- 	                    <li class="has_sub">
-	                        <a class="waves-effect" @click="showMenu">
-	                        	<i class="fa fa-cogs"></i> 
-	                        	<span>系统配置</span>
-	                        	<i class="fa showhide fa-angle-down"></i>
-	                        </a>
-	                        <ul class="menu-child">
-	                        	<li class="has_sub">
-	                        		<a href="#!/menu">
-	                        			<i class="fa fa-building-o"></i> 
-	                        			<span>菜单管理</span>
-	                        		</a>
-	                        	</li>
-	                        	<li class="has_sub">
-	                        		<a href="#!/user">
-	                        			<i class="fa fa-user"></i> 
-	                        			<span>用户管理</span>
-	                        		</a>
-	                        	</li>
-	                        	<li class="has_sub">
-	                        		<a href="#!/users">
-	                        			<i class="fa fa-users"></i> 
-	                        			<span>角色管理</span>
-	                        		</a>
-	                        	</li>
-	                        	<li class="has_sub">
-	                        		<a href="#!/permission">
-										<i class="fa fa-lock"></i> 
-	                        			<span>权限管理</span>
-	                        		</a>
-	                        	</li>
-	                        	<li class="has_sub">
-	                        		<a href="#!/actions">
-										<i class="fa fa-keyboard-o"></i> 
-	                        			<span>操作管理</span>
-	                        		</a>
-	                        	</li>
-	                        </ul>
-	                    </li>
-	                    <li class="has_sub">
-	                        <a class="waves-effect" @click="showMenu">
-	                        	<i class="fa fa-gitlab"></i> 
-	                        	<span>pos管理</span>
-	                        	<i class="fa showhide fa-angle-down"></i>
-	                        </a>
-	                        <ul class="menu-child">
-	                        	<li class="has_sub">
-	                        		<a href="#!/pos-param">
-	                        			<i class="fa fa-file-text-o"></i> 
-	                        			<span>参数设置</span>
-	                        		</a>
-	                        	</li>
-	                        	<li class="has_sub">
-	                        		<a href="#!/pos-group">
-	                        			<i class="fa fa-copy"></i> 
-	                        			<span>分组管理</span>
-	                        		</a>
-	                        	</li>
-	                        </ul>  
-	                    </li>
-	                    <li class="has_sub">
-	                        <a class="waves-effect" @click="showMenu">
-	                        	<i class="fa fa-paw"></i> 
-	                        	<span>门店管理</span>
-	                        	<i class="fa showhide fa-angle-down"></i>
-	                        </a>
-	                        <ul class="menu-child">
-	                        	<li class="has_sub">
-	                        		<a href="#!/store-message">
-	                        			<i class="fa fa-file-text-o"></i> 
-	                        			<span>信息设置</span>
-	                        		</a>
-	                        	</li>
-	                        	<li class="has_sub">
-	                        		<a href="#!/store-area">
-	                        			<i class="fa fa-th"></i> 
-	                        			<span>区域管理</span>
-	                        		</a>
-	                        	</li>
-	                        </ul>  
-	                    </li>
-	                    <li class="has_sub">
-	                        <a href="#!/product" class="waves-effect">
-	                        	<i class="fa fa-diamond"></i> 
-	                        	<span>商品管理</span> 
-	                        </a>
-	                    </li> -->
 	                </ul>
 	            </div>
 	        </div>
@@ -232,13 +145,65 @@
 	var commonGetters = require('../../vuex/common/getters.js');
 	var commonActions = require('../../vuex/common/actions.js');
     var http = require('../../utils/HttpHelper.js');
+	var Common = require('../../utils/Common.js');
 
 	module.exports = {
+		vuex : {
+			actions : {
+				setLeftMenus : commonActions.setLeftMenus
+			},
+			getters : {
+				componentState : commonGetters.fixmodelState, //组件状态,true为伸状态，false为缩状态
+				leftMenus : commonGetters.getLeftMenus //获取菜单配置
+			}
+		},
 		data : function () {
 			return {
-				showmenu : false,
-				menus : " "
+				/**
+				* 将菜单拆分,获取指定的菜单列表
+				* @param level 菜单等级
+				*/
+				splitMenu : function(level) {
+					var arr = [];
+					for(var i = 0, len = this.leftMenus.length; i < len ; i++){
+						var l = this.leftMenus[i]['level'];
+						if (l == level) {
+							arr.push(this.leftMenus[i]);
+						}
+					}
+					return arr;
+				},
+				/**
+				* 获取所有的菜单
+				*/
+				queryMenu : function (){
+					var self = this;
+					http.menu.query({
+						succ : function (rs){
+							self.setLeftMenus(rs.list);
+						},
+						err : function (msg){
+							Common.tips(msg, 'error', 1500);
+						}
+					});
+				}
 			}
+		},
+		computed : {
+			/**
+			 * 1级菜单
+			 * @return {[array]} [1级菜单list]
+			 */
+			l1_arr : function(){
+				return this.splitMenu(1);
+			},
+			/**
+			 * 2级菜单
+			 * @return {[array]} [2级菜单list]
+			 */
+			l2_arr : function(){
+				return this.splitMenu(2);
+			},
 		},
 		methods: {
 			showMenu : function (event){ //菜单下拉
@@ -253,37 +218,33 @@
 				menu_child.slideToggle('slow');
 			}
 		},
-		vuex : {
-			actions : {
-				setLeftMenus : commonActions.setLeftMenus
-			},
-			getters : {
-				componentState : commonGetters.fixmodelState, //组件状态,true为伸状态，false为缩状态
-				leftMenus : commonGetters.getLeftMenus //获取菜单配置
-			}
-		},
 		ready : function () {
 
-			var self = this;
-			if (self.leftMenus == " ") {
-				http.config.query({
-					data : {
-						key : "menu"
-					},
-	                succ : function (rs) {
-	                    self.setLeftMenus(rs);
-	                },
-	                err : function (msg) {
-	                    console.log(msg)
-	                }
-	            });
-			}
+			if (this.leftMenus.length < 1){
+   				this.queryMenu();
+   			}
 
-            this.$watch('leftMenus', function(v){ //监听菜单配置
-            	this.menus = v;
-            });
+			// var self = this;
+			// if (self.leftMenus == " ") {
+			// 	http.menu.query({
+			// 		data : {
+			// 			key : "menu"
+			// 		},
+	  //               succ : function (rs) {
+
+	  //                   self.setLeftMenus(rs);
+	  //               },
+	  //               err : function (msg) {
+	  //                   console.log(msg)
+	  //               }
+	  //           });
+			// }
+
+   //          this.$watch('leftMenus', function(v){ //监听菜单配置
+   //          	this.menus = v;
+   //          });
+
+   						
         }
     }
-
-
 </script>>

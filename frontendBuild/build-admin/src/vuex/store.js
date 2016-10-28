@@ -7,15 +7,17 @@ Vue.use(Vuex);
 //模块化的store，公共模块，管理模块状态
 var common = require('./common/store.js');
 var addForm = require('./addForm/store.js');
-var users = require('./users/store.js');
+var user = require('./user/store.js');
 var menu = require('./menu/store.js');
+var role = require('./role/store.js');
 
 module.exports = new Vuex.Store({
 	//组合模块
 	modules : {
 		common : common,
 		addForm : addForm,
-		users : users,
-		menu : menu
+		user : user,
+		menu : menu,
+		role : role
 	}
 });

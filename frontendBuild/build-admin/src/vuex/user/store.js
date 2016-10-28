@@ -1,5 +1,6 @@
 var state = {
-	editObj : {} //编辑对象
+	editObj : {}, //编辑对象
+	userList : []
 };
 
 var mutations = {
@@ -23,6 +24,13 @@ var mutations = {
 	 */
 	SET_USER_EDIT_OBJ : function(state,editObj){
 		state.editObj = editObj;
+	},
+
+	/**
+	 * 设置用户列表
+	 */
+	SET_USER_LIST : function (state, arr){
+		state.userList = arr;
 	}
 };
 

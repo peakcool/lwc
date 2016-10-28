@@ -44,6 +44,9 @@ module.exports = {
      * 设置当前对象
      */
     setCurrentObj : function (store,currentObj) {
+        for(v in currentObj.role){
+            console.log(v);
+        }
     	return store.dispatch('SET_CURRENT_OBJ',currentObj);
     },
 

@@ -62,16 +62,17 @@
 				setPagingTotal : commonActions.setPagingTotal,//设置总页数
 				toggleSideBar : addFormActions.toggleSideBarState, //设置右弹出层状态
 				setFormTitle : commonActions.setFormTitle, //设置表单标题
+				setLeftMenus : commonActions.setLeftMenus
 			},
 			getters : {
             	pagingTotal : commonGetters.pagingTotal,//总页数
                 pagingPage : commonGetters.pagingPage,//获得当前的页数
                 sideBarState : addFormGetters.sideBarState, //获取表单侧栏状态
+                menuList : commonGetters.getLeftMenus //获取菜单配置
             }
 		},
 		data : function () {
 			return {
-				menuList : [],
 				queryMenu : function() {
 					var self = this;
 					http.menu.query({
@@ -80,7 +81,7 @@
 		                },
 						succ : function (rs) {
 							self.setPagingTotal(rs.total)
-							self.menuList = rs.list
+							self.setLeftMenus(rs.list);
 						},
 						err : function (msg) {
 							common.tips(msg,'error',1500);
@@ -92,7 +93,6 @@
 		components : {
 			"lwc-page" : require("../../components/common/Page.vue"),
 		},
-		
 		methods : {
 			showSideBar : function (currentObj){
             	this.setFormTitle("编辑菜单");
@@ -103,7 +103,7 @@
 		ready : function () {
 			var self = this;
             //执行一次数据的获取
-            if(this.pagingTotal < 1){
+            if(this.pagingTotal < 1 || this.menuList.length < 1){
                 this.queryMenu();
             }
             //监听page的变化
@@ -117,9 +117,6 @@
             });
 		},
 		route : {
-			data : function (transition) {
-				this.queryMenu()
-			},
 	        activate(transition) {
 	            this.saveRouter(this.$route.name);
 	            transition.next();

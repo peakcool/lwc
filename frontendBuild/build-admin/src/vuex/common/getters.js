@@ -41,6 +41,7 @@ module.exports = {
 
 	//获取左侧栏菜单配置
 	getLeftMenus : function (state) {
+		// console.log(state.common.leftMenus);
 		return state.common.leftMenus;
 	}
 }

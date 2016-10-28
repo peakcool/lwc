@@ -1,7 +1,7 @@
 <template>
     <div class="form-group">
         <label for="user_role" slot="checkbox_label">用户角色</label>
-        <lwc-checkbox :value="roleList"></lwc-checkbox>
+        <lwc-checkbox :value="roleList" :oldvalue="userObj.role"></lwc-checkbox>
     </div>
     <div class="form-group">
         <label for="name">用户名称</label>
@@ -29,41 +29,51 @@
 
 <script>
     var commonGetters = require('../../vuex/common/getters.js');
+    var roleGetters = require('../../vuex/role/getters.js');
+    var roleActions = require('../../vuex/role/actions.js');
     var http = require('../../utils/HttpHelper.js');
 
     module.exports = {
+        vuex : {
+            getters : {
+                currentObj : commonGetters.getCurrentObj, //获取当前对象
+                roleList : roleGetters.getRoleList //获取角色数据
+            },
+            actions : {
+                setRoleList : roleActions.setRoleList //设置角色数据
+            }
+        },
         data : function () {
             return {
                 userObj : Object,
-                roleList : [],
                 editObj : false,
-                roleModel : []
+                queryRoleData : function (){
+                    var self = this;
+                    http.role.query({
+                        succ : function (rs) {
+                            self.setRoleList(rs.list);
+                        },
+                        err : function (msg) {
+                            common.tips(msg,'error',1500);
+                        }
+                    })
+                }
             }
         },
         components : {
             'lwc-checkbox' : require('../common/Checkbox.vue')
         },
-        vuex : {
-            getters : {
-                currentObj : commonGetters.getCurrentObj, //获取当前对象
-            }
-        },
+        
         ready : function () {
-
             var self = this;
             self.$watch("currentObj" , function (v) {
                 self.userObj = v;
                 v.state == undefined ? self.editObj = true : self.editObj = false; //设置是否为编辑
             });
 
-            http.role.query({
-                succ : function (rs) {
-                    self.roleList = rs.list
-                },
-                err : function (msg) {
-                    console.log(msg)
-                }
-            })
+            if (self.roleList.length < 1){
+                self.queryRoleData();
+            } 
         }
     }
 </script>

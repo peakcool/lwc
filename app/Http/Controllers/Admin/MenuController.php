@@ -30,10 +30,11 @@ class MenuController extends Controller
         }
         if ($request->has('keyword')) { //关键字搜索
             $keyword = $request->input('keyword');
-            $res = $this->menu->where('name','like','%'.$keyword.'%')->paginate(10)->toArray();
+            $res = $this->menu->where('name','like','%'.$keyword.'%')->paginate(20)->toArray();
         } else {
-            $res = $this->menu->paginate(10)->toArray();
+            $res = $this->menu->paginate(20)->toArray();
         }
+
         if (!$res) {
             $rt = array(
                 'status' => 400,

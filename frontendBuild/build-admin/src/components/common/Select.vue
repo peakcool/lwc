@@ -43,7 +43,6 @@
 			} 
 
 			this.$watch('commonSetting', function(v){
-
 				switch(this.type){
 					case "actions" :
 						this.options = v.actions;

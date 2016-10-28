@@ -1,12 +1,12 @@
 {
   "main": [
-    "build.js",
-    "style.css",
-    "build.js.map",
-    "style.css.map"
+    "build.705075fe48ee8650f8e8.js",
+    "style.705075fe48ee8650f8e8.css",
+    "build.705075fe48ee8650f8e8.js.map",
+    "style.705075fe48ee8650f8e8.css.map"
   ],
-  "vendor.js": [
-    "vendor.js",
-    "vendor.js.map"
+  "vendor.[hash].js": [
+    "vendor.705075fe48ee8650f8e8.js",
+    "vendor.705075fe48ee8650f8e8.js.map"
   ]
 }

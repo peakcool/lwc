@@ -13,7 +13,7 @@ var state = {
 	}, //当前对象
 	formTitle : " ", //表单标题
 	setting : " ",
-	leftMenus : " "
+	leftMenus : []
 };
 
 //创建对象存储一系列我们接下来要写的mutation函数
@@ -78,6 +78,7 @@ var mutations = {
 	 */
 	SET_CURRENT_OBJ : function(state,currentObj){
 		state.currentObj = currentObj;
+		console.log(state.currentObj);
 	},
 
 	/**
