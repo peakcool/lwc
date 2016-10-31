@@ -44,9 +44,6 @@ module.exports = {
      * 设置当前对象
      */
     setCurrentObj : function (store,currentObj) {
-        for(v in currentObj.role){
-            console.log(v);
-        }
     	return store.dispatch('SET_CURRENT_OBJ',currentObj);
     },
 
@@ -73,5 +70,9 @@ module.exports = {
      */
     setLeftMenus : function (store, leftMenus) {
         return store.dispatch('SET_LEFT_MENUS', leftMenus);
+    },
+
+    setCheckboxRaw : function (store, data) {
+        return store.dispatch('SET_CHECKBOX_RAW', data);
     }
 }

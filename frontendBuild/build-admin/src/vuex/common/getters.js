@@ -43,5 +43,9 @@ module.exports = {
 	getLeftMenus : function (state) {
 		// console.log(state.common.leftMenus);
 		return state.common.leftMenus;
+	},
+
+	getCheckboxRaw : function (state) {
+		return state.common.checkobx_raw;
 	}
 }

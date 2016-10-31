@@ -59,7 +59,7 @@
 	module.exports = {
 		vuex : {
 			actions : {
-				setCurrentObj : commonActions.setCurrentObj, //设置当前对象
+				setUserCurrentObj : userActions.setUserCurrentObj, //设置当前对象
 				saveRouter : commonActions.setRouterName, //设置路由参数
 				setPagingTotal : commonActions.setPagingTotal,//设置总页数
 				toggleSideBar : addFormActions.toggleSideBarState, //设置右弹出层状态
@@ -101,7 +101,7 @@
 		methods : {
 			showSideBar : function (currentObj){
             	this.setFormTitle("编辑用户");
-				this.setCurrentObj(currentObj); //设置当前对象
+				this.setUserCurrentObj(currentObj); //设置当前对象
 				this.toggleSideBar(true); //设置右弹出框状态
 			}
 		},

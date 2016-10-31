@@ -35,17 +35,35 @@
 </template>
 <script>
 
+var commonGetters = require('../../vuex/common/getters.js');
 var http = require('../../utils/HttpHelper.js');
 
 module.exports = {
-    props: ['value','oldvalue'],
+    props: ['value'],
     data: function() {
         return {
             idModel: [], //id list
             nameModel : [] // name list
         }
     },
+    vuex : {
+        getters : {
+            checkboxRaw : commonGetters.getCheckboxRaw, //获取原始数据
+        },
+    },
     ready : function (){
+
+        this.$watch('checkboxRaw', function (raw){
+            
+            var idList = [],
+                nameList = []            
+            $.each(raw, function(k,el){
+                idList.push(el.id + '');
+                nameList.push(el.display_name);
+            });
+            this.idModel = idList;
+            this.nameModel = nameList;
+        });
 
     	this.$watch('idModel', function (v){ //监听选中列表
     		var checkbox = [];
@@ -53,8 +71,6 @@ module.exports = {
     			this.nameModel = checkbox;
     			return
     		}
-        console.log(this.oldvalue);
-            
     		for(var i in v){ //选中checkbox id => name
     			$.each(this.value,function(k,el){
     				if (v[i] == el.id) {
@@ -63,7 +79,7 @@ module.exports = {
     			})
     			this.nameModel = checkbox;
     		}
-    	})
+    	});
     }
 }
 </script>

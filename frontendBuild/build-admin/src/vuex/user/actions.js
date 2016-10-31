@@ -1,16 +1,16 @@
 module.exports = {
 	
 	/**
-	 * 初始化编辑对象
+	 * 初始化当前对象
 	 */
-	initUserEditObj : function(store){
-		return store.dispatch('INIT_USER_EDIT_OBJ');
+	initUserCurrentObj : function(store){
+		return store.dispatch('INIT_USER_CURRENT_OBJ');
 	},
 	/**
-	 * 设置编辑对象
+	 * 设置当前对象
 	 */
-	setUserEditObj : function(store,editObj){
-		return store.dispatch('SET_USER_EDIT_OBJ',editObj);
+	setUserCurrentObj : function(store,obj){
+		return store.dispatch('SET_USER_CURRENT_OBJ',obj);
 	},
 
 	/**

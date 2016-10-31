@@ -1,7 +1,7 @@
 <template>
     <div class="form-group">
         <label for="user_role" slot="checkbox_label">用户角色</label>
-        <lwc-checkbox :value="roleList" :oldvalue="userObj.role"></lwc-checkbox>
+        <lwc-checkbox :value="roleList"></lwc-checkbox>
     </div>
     <div class="form-group">
         <label for="name">用户名称</label>
@@ -28,24 +28,26 @@
 </template>
 
 <script>
-    var commonGetters = require('../../vuex/common/getters.js');
+    var userGetters = require('../../vuex/user/getters.js');
     var roleGetters = require('../../vuex/role/getters.js');
     var roleActions = require('../../vuex/role/actions.js');
+    var commonActions = require('../../vuex/common/actions.js');
     var http = require('../../utils/HttpHelper.js');
 
     module.exports = {
         vuex : {
             getters : {
-                currentObj : commonGetters.getCurrentObj, //获取当前对象
+                currentObj : userGetters.getUserCurrentObj, //获取当前对象
                 roleList : roleGetters.getRoleList //获取角色数据
             },
             actions : {
-                setRoleList : roleActions.setRoleList //设置角色数据
+                setRoleList : roleActions.setRoleList, //设置角色数据
+                setCheckboxRaw : commonActions.setCheckboxRaw //设置checkbox 原始数据
             }
         },
         data : function () {
             return {
-                userObj : Object,
+                userObj : {},
                 editObj : false,
                 queryRoleData : function (){
                     var self = this;
@@ -69,6 +71,9 @@
             self.$watch("currentObj" , function (v) {
                 self.userObj = v;
                 v.state == undefined ? self.editObj = true : self.editObj = false; //设置是否为编辑
+                if (self.editObj) {
+                    self.setCheckboxRaw(v.role);
+                }
             });
 
             if (self.roleList.length < 1){

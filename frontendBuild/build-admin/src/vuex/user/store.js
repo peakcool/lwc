@@ -1,29 +1,27 @@
 var state = {
-	editObj : {}, //编辑对象
+	obj : {}, //编辑对象
 	userList : []
 };
 
 var mutations = {
 
 	/**
-	 * 初始化编辑对象
-	 * @param {[type]} state [description]
+	 * 初始化当前对象
 	 */
-	INIT_USER_EDIT_OBJ : function (state) {
+	INIT_USER_CURRENT_OBJ : function (state) {
 		state.editObj = {
             "id":0,
             "name":"",
             "display_name":" ",
-            "description":" "
+            "description":" ",
+            "role" : {}
 		}
 	},
 	/**
-	 * 设置编辑对象
-	 * @param {[type]} state   [description]
-	 * @param {[type]} editobj [description]
+	 * 设置当前对象
 	 */
-	SET_USER_EDIT_OBJ : function(state,editObj){
-		state.editObj = editObj;
+	SET_USER_CURRENT_OBJ : function(state,obj){
+		state.obj = obj;
 	},
 
 	/**
