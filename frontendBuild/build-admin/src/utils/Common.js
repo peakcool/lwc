@@ -23,6 +23,32 @@ module.exports = {
             return false;
         }
     },
+
+    /**
+     * 密码的验证
+     */
+    isPwd : function(str) {
+        str += '';
+        var reg = /^[0-9a-zA-Z]+$/;
+        if(str.length >= 6 && reg.test(str)){
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    /**
+     * 邮箱的验证
+     */
+    isEmail : function(str) {
+        str += '';
+        var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+        if (reg.test(str)){
+            return true;
+        } else {
+            return false;
+        }
+    },
     /**
     * 商品简介得验证
     */

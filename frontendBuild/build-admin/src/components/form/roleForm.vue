@@ -1,16 +1,4 @@
 <template>
-<!-- 	<div class="form-group">
-        <label for="name">角色标识</label>
-        <input id="name" type="text" class="form-control" name="name" value="{{ roleObj.name }}">
-    </div>
-    <div class="form-group">
-        <label for="display_name">角色名称</label>
-        <input id="display_name" type="text" class="form-control" name="display_name" value="{{ roleObj.display_name }}">
-    </div>
-    <div class="form-group">
-        <label for="description">角色描述</label>
-        <input id="description" type="text" class="form-control" name="description" value="{{ roleObj.description }}">
-    </div> -->
     <div class="form-group">
         <label class="" for="name">角色标识</label>
         <div class="col-md-12">

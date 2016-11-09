@@ -1,6 +1,6 @@
 <style>
     #main{
-        position: relative;
+        lwcition: relative;
         width: 100%;
         min-height: 100%;
         height: auto;
@@ -9,13 +9,13 @@
 <template>
     <div id="main">
         <!-- 头部 start -->
-        <pos-header></pos-header>
+        <lwc-header></lwc-header>
         <!-- 头部  end  -->
         <!-- 左侧导航 start -->
-        <pos-aside></pos-aside>
+        <lwc-aside></lwc-aside>
         <!-- 左侧导航  end  -->
         <!-- 右侧内容部分 start -->
-        <pos-section></pos-section>
+        <lwc-section></lwc-section>
         <!-- 右侧内容部分  end  -->
     </di6v>
 </template>
@@ -25,9 +25,9 @@
     module.exports = {
         store : gloalStore, //注入store，组件状态管理，在根组件中加入，让它的子组件和store链接
         components : {
-            'pos-header' : require('./components/common/Header.vue'),
-            'pos-aside' : require('./components/common/Aside.vue'),
-            'pos-section' : require('./components/common/Section.vue'),
+            'lwc-header' : require('./components/common/Header.vue'),
+            'lwc-aside' : require('./components/common/Aside.vue'),
+            'lwc-section' : require('./components/common/Section.vue'),
         }
     }
 </script>

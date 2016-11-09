@@ -28,7 +28,7 @@
     </div>
     <ul class="has-success check-ul">
         <li class="checkbox-custom check-left" v-for="obj in value">
-            <input id="checkbox{{ obj.id }}" type="checkbox" v-model="idModel" value="{{ obj.id }}" >
+            <input id="checkbox{{ obj.id }}" type="checkbox" v-model="model" value="{{ obj.id }}" >
             <label for="checkbox{{ obj.id }}" class="checkbox-success">{{ obj.display_name }}</label>
         </li>
     </ul>
@@ -39,33 +39,18 @@ var commonGetters = require('../../vuex/common/getters.js');
 var http = require('../../utils/HttpHelper.js');
 
 module.exports = {
-    props: ['value'],
+    props: {
+        value : Array,
+        model : []
+    },
     data: function() {
         return {
-            idModel: [], //id list
             nameModel : [] // name list
         }
     },
-    vuex : {
-        getters : {
-            checkboxRaw : commonGetters.getCheckboxRaw, //获取原始数据
-        },
-    },
     ready : function (){
 
-        this.$watch('checkboxRaw', function (raw){
-            
-            var idList = [],
-                nameList = []            
-            $.each(raw, function(k,el){
-                idList.push(el.id + '');
-                nameList.push(el.display_name);
-            });
-            this.idModel = idList;
-            this.nameModel = nameList;
-        });
-
-    	this.$watch('idModel', function (v){ //监听选中列表
+    	this.$watch('model', function (v){ //监听选中列表
     		var checkbox = [];
     		if(eval(v).length <= 0){
     			this.nameModel = checkbox;

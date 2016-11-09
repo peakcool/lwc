@@ -73,6 +73,11 @@ module.exports = {
     },
 
     setCheckboxRaw : function (store, data) {
-        return store.dispatch('SET_CHECKBOX_RAW', data);
+
+        var idList = [];            
+        $.each(data, function(k,el){
+            idList.push(el.id + '');
+        });
+        return store.dispatch('SET_CHECKBOX_RAW', idList);
     }
 }

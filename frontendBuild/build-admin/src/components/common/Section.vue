@@ -38,6 +38,8 @@
 
 	    <!--悬浮添加按钮-->
 		<lwc-add-btn></lwc-add-btn>
+    	<!-- <lwc-sidebar></lwc-sidebar> -->
+
 	</div>
 </template>
 <script>
@@ -51,7 +53,8 @@
 			}
 		},
 		components : {
-            'lwc-add-btn' : require('./AddBtn.vue')
+            'lwc-add-btn' : require('./AddBtn.vue'),
+            "lwc-sidebar" : require('./SideBar.vue')
         },
 		vuex : {
 			getters : {

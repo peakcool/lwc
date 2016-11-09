@@ -35,13 +35,11 @@ module.exports = {
 
 	//获取配置对象
 	getCommonSetting : function(state) {
-		// console.log("getters:",state.common.setting);
 		return state.common.setting;
 	},
 
 	//获取左侧栏菜单配置
 	getLeftMenus : function (state) {
-		// console.log(state.common.leftMenus);
 		return state.common.leftMenus;
 	},
 

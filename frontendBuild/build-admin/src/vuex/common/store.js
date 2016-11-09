@@ -14,7 +14,7 @@ var state = {
 	formTitle : " ", //表单标题
 	setting : " ",
 	leftMenus : [],
-	checkobx_raw : {}
+	checkobx_raw : []
 };
 
 //创建对象存储一系列我们接下来要写的mutation函数
@@ -79,7 +79,7 @@ var mutations = {
 	 */
 	SET_CURRENT_OBJ : function(state,currentObj){
 		state.currentObj = currentObj;
-		console.log(state.currentObj.role[0].display_name);
+		// console.log(state.currentObj.role[0].display_name);
 	},
 
 	/**
@@ -113,7 +113,7 @@ var mutations = {
 	},
 
 	/**
-	 * 设置checkbox原始数据
+	 * 设置checkbox原始ID LIST
 	 */
 	SET_CHECKBOX_RAW : function (state, data){
 		state.checkobx_raw = data;
