@@ -125,7 +125,9 @@ var config = {
             { test: /\.woff$/, loader: "url?limit=10000&minetype=application/font-woff" },
             { test: /\.ttf$/, loader: "file" },
             { test: /\.eot$/, loader: "file" },
-            { test: /\.svg$/, loader: "file" }
+            { test: /\.svg$/, loader: "file" },
+            { test: /iview.src.*?js$/, loader: 'babel' },
+            { test: /\.js$/, loader: 'babel', exclude: /node_modules/ }
         ]
     },
     vue: {

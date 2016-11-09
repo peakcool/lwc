@@ -82,7 +82,7 @@
             actions : {
                 setRoleList : roleActions.setRoleList, //设置角色数据
                 setCheckboxRaw : commonActions.setCheckboxRaw, //设置checkbox 原始数据
-                toggleSideBar : addFormActions.toggleSideBarState
+                toggleSideBar : addFormActions.toggleSideBarState //设置右侧栏状态
             }
         },
         data : function () {
@@ -122,13 +122,47 @@
                         common.tips('用户邮箱不能为空','error',1500);
                         return false;
                     }
-
-                    if(this.userObj.password_old === this.userObj.password_confirmation){
-                        common.tips('用户不能为空','error',1500);
-                        return false;
-                    }
                     
+                    if (!$.isEmptyObject(this.userObj.password)){
+                        if (this.userObj.password != this.userObj.password_confirmation) {
+                            common.tips('两次密码必须一致','error',1500);
+                            return false;
+                        }
+                    }
                     return true;
+                },
+
+                creatData : function (){
+                    var self = this;
+                    if(self.isAdopt()){
+                        http.user.create({
+                            data : self.userObj,
+                            succ : function(rs){
+                                self.toggleSideBar(false);
+                                common.tips('提交成功2','success',1500);
+                            },
+                            err : function(msg){
+                                common.tips(msg,'error',1500);
+                            }
+                        });
+                    }
+                },
+
+                updateData : function (){
+                    var self = this;
+                    if(self.isAdopt()){
+                        http.user.save({
+                            key : [self.userObj.id],
+                            data : self.userObj,
+                            succ : function(rs){
+                                self.toggleSideBar(false);
+                                common.tips('提交成功','success',1500);
+                            },
+                            err : function(msg){
+                                common.tips(msg,'error',1500);
+                            }
+                        });
+                    }
                 }
             }
         },
@@ -142,7 +176,7 @@
             var self = this;
             self.$watch("currentObj" , function (v) {
                 self.userObj = v;
-                v.state == undefined ? self.editObj = true : self.editObj = false; //设置是否为编辑
+                v.id != 0 ? self.editObj = true : self.editObj = false; //设置是否为编辑
                 if (self.editObj) self.setCheckboxRaw(v.role);
             });
 
@@ -154,20 +188,7 @@
         },
         methods : {
             submitForm : function(){
-                if(this.isAdopt()){
-                    http.user.save({
-                    key : [this.userObj.id],
-                    data : this.userObj,
-                    succ : function(rs){
-                        // showSideBar(false);
-                        common.tips('保存成功','success',1500);
-
-                    },
-                    err : function(msg){
-                        common.tips(msg,'error',1500);
-                    }
-                });
-                }
+                this.editObj ? this.updateData() : this.creatData();
             },
             showSideBar : function(state){
                 this.toggleSideBar(state);

@@ -9,7 +9,7 @@ var mutations = {
 	 * 初始化当前对象
 	 */
 	INIT_USER_CURRENT_OBJ : function (state) {
-		state.editObj = {
+		state.obj = {
             "id":0,
             "name":"",
             "display_name":" ",

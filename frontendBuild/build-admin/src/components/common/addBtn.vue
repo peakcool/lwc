@@ -69,7 +69,8 @@
 
 var addFormActions = require('../../vuex/addForm/actions.js'); 
 var addFormGetters = require('../../vuex/addForm/getters.js');
-var commonActions    = require('../../vuex/common/actions.js');
+var commonActions  = require('../../vuex/common/actions.js');
+var userActions    = require('../../vuex/user/actions.js');
 
 module.exports = {
     components : {
@@ -78,7 +79,8 @@ module.exports = {
     vuex : {
     	actions : {
     		toggleSideBarState : addFormActions.toggleSideBarState, //设置右弹出层状态
-            initCurrentObj : commonActions.initCurrentObj //初始化当前对象
+            initCurrentObj : commonActions.initCurrentObj, //初始化当前对象
+            initUserCurrentObj : userActions.initUserCurrentObj //初始化user对象
     	},
     	getters : {
     		componentState : addFormGetters.sideBarState //获取右弹出层状态
@@ -87,6 +89,7 @@ module.exports = {
     methods : {
         showSideBar : function () {
             this.initCurrentObj();
+            this.initUserCurrentObj();
             this.toggleSideBarState();
         }
     }, 

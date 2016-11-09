@@ -103,7 +103,7 @@
                     data : this.roleObj,
                     succ : function(rs){
                         common.go('role');
-                        common.tips('保存成功','success',1500);
+                        common.tips('提交成功','success',1500);
 
                     },
                     err : function(msg){

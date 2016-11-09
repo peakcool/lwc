@@ -4,6 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "extract-text-webpack-plugin": "^0.8.2",
+    "iview": "^0.9.7-rc-1",
     "vuex": "^0.8.2"
   },
   "devDependencies": {
@@ -45,7 +46,7 @@
     "hot": "webpack-dev-server --progress --colors --inline --hot",
     "cp": "cp -r index.html ./build/ d:/wamp/www/vue",
     "ip": "webpack-dev-server  --progress --colors --hot --host=0.0.0.0  --port 9000",
-    "mock":"node mockServer.js",
+    "mock": "node mockServer.js",
     "mockdev": "export LOCALREST=1 && webpack-dev-server --progress --profile --colors --inline --port 8081 ",
     "wmdev": "set LOCALREST=1 && webpack-dev-server --progress --profile --colors --inline "
   },
