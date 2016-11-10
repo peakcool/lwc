@@ -26,7 +26,7 @@
 	                        <td class="table-action">
 	                            <button type="button" class="btn btn-default">赋权</button>
 	                            <button type="button" class="btn btn-success" @click="showSideBar(role)">编辑</button>
-	                            <button type="button" class="btn btn-danger">删除</button>
+	                            <button type="button" class="btn btn-danger" @click="deleteCurrent(role)">删除</button>
 	                        </td>
 	                    </tr>
 	                </tbody>
@@ -56,12 +56,13 @@
 	module.exports = {
 		vuex : {
 			actions : {
-				setCurrentObj : commonActions.setCurrentObj, //设置当前对象
+				setRoleCurrentObj : roleActions.setRoleCurrentObj, //设置当前对象
 				saveRouter : commonActions.setRouterName, //设置路由参数
 				setPagingTotal : commonActions.setPagingTotal,//设置总页数
 				toggleSideBar : addFormActions.toggleSideBarState, //设置右弹出层状态
 				setFormTitle : commonActions.setFormTitle, //设置表单标题
-				setRoleList : roleActions.setRoleList //设置角色列表
+				setRoleList : roleActions.setRoleList, //设置角色列表
+				deleteRole : roleActions.deleteRole //删除角色
 			},
 			getters : {
             	pagingTotal : commonGetters.pagingTotal,//总页数
@@ -96,9 +97,27 @@
 		methods : {
 			showSideBar : function (currentObj){
             	this.setFormTitle("编辑角色");
-				this.setCurrentObj(currentObj); //设置当前对象
+				this.setRoleCurrentObj(currentObj); //设置当前对象
 				this.toggleSideBar(true); //设置右弹出框状态
-			}
+			},
+			/**
+             * 删除角色
+             */
+            deleteCurrent : function (role){
+                var self = this;
+                if(confirm('确定要删除吗?')){
+	                http.role.delete({
+	                    key : role.id,
+	                    succ : function(rs){
+	                    	self.deleteRole(role);
+	                        common.tips('删除成功','success',1500);
+	                    },
+	                    err : function(msg){
+	                        common.tips(msg,'error',1500);
+	                    }
+	                });
+	            }
+            }
 		},
 		ready : function () {
 			var self = this;

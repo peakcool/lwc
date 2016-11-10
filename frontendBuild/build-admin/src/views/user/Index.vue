@@ -29,7 +29,7 @@
 	                        </td>
 	                        <td class="table-action">
 	                            <button type="button" class="btn btn-success" @click="showSideBar(user)">编辑</button>
-	                            <button type="button" class="btn btn-danger">删除</button>
+	                            <button type="button" class="btn btn-danger" @click="deleteCurrent(user)">删除</button>
 	                        </td>
 	                    </tr>
 	                </tbody>
@@ -64,7 +64,8 @@
 				setPagingTotal : commonActions.setPagingTotal,//设置总页数
 				toggleSideBar : addFormActions.toggleSideBarState, //设置右弹出层状态
 				setFormTitle : commonActions.setFormTitle, //设置表单标题
-				setUserList : userActions.setUserList //设置用户列表
+				setUserList : userActions.setUserList, //设置用户列表
+				deleteUser : userActions.deleteUser
 
 			},
 			getters : {
@@ -103,7 +104,25 @@
             	this.setFormTitle("编辑用户");
 				this.setUserCurrentObj(currentObj); //设置当前对象
 				this.toggleSideBar(true); //设置右弹出框状态
-			}
+			},
+			/**
+             * 删除用户
+             */
+            deleteCurrent : function (user){
+                var self = this;
+                if(confirm('确定要删除吗?')){
+                	http.user.delete({
+	                    key : user.id,
+	                    succ : function(rs){
+	                    	self.deleteUser(user);
+	                        common.tips('删除成功','success',1500);
+	                    },
+	                    err : function(msg){
+	                        common.tips(msg,'error',1500);
+	                    }
+                	});
+                } 
+            }
 		},
 		ready : function () {
 			var self = this;

@@ -5,10 +5,10 @@
 module.exports = {
 
 	/**
-	 * 获取权限编辑对象
+	 * 获取角色当前对象
 	 */
-	getRoleEditObj : function(state){
-		return state.role.editObj;
+	getRoleCurrentObj : function(state){
+		return state.role.obj;
 	},
 
 	/**

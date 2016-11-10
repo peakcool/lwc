@@ -23,7 +23,7 @@
             :value.sync="userObj.email">
         </lwc-input>
     </div>
-    <div class="form-group" v-show="editObj">
+    <div class="form-group" v-show="isEdit">
         <label for="password" >原始密码</label>
         <lwc-input
             type="text"
@@ -34,7 +34,7 @@
         </lwc-input>
     </div>
     <div class="form-group">
-        <label for="password" v-if="editObj">新密码</label>
+        <label for="password" v-if="isEdit">新密码</label>
         <label for="password" v-else>用户密码</label>
     	<lwc-input
             type="text"
@@ -45,7 +45,7 @@
         </lwc-input>
     </div>
     <div class="form-group">
-        <label for="password_confirmation" v-if="editObj">确认新密码</label>
+        <label for="password_confirmation" v-if="isEdit">确认新密码</label>
         <label for="password_confirmation" v-else>确认密码</label>
     	<lwc-input
             type="text"
@@ -63,6 +63,7 @@
 
 <script>
     var userGetters = require('../../vuex/user/getters.js');
+    var userActions = require('../../vuex/user/actions.js');
     var roleGetters = require('../../vuex/role/getters.js');
     var roleActions = require('../../vuex/role/actions.js');
     var commonActions = require('../../vuex/common/actions.js');
@@ -75,14 +76,15 @@
     module.exports = {
         vuex : {
             getters : {
-                currentObj : userGetters.getUserCurrentObj, //获取当前对象
-                roleList : roleGetters.getRoleList, //获取角色数据
+                currentObj  : userGetters.getUserCurrentObj, //获取当前对象
+                roleList    : roleGetters.getRoleList, //获取角色数据
                 checkboxRaw : commonGetters.getCheckboxRaw //获取原始数据
             },
             actions : {
-                setRoleList : roleActions.setRoleList, //设置角色数据
+                setRoleList    : roleActions.setRoleList, //设置角色数据
                 setCheckboxRaw : commonActions.setCheckboxRaw, //设置checkbox 原始数据
-                toggleSideBar : addFormActions.toggleSideBarState //设置右侧栏状态
+                toggleSideBar  : addFormActions.toggleSideBarState, //设置右侧栏状态
+                pushUser       : userActions.pushUser //添加用户
             }
         },
         data : function () {
@@ -94,7 +96,7 @@
                     password_old:"",
                     password_confirmation : ""
                 },
-                editObj : false,
+                isEdit : false,
                 model   : [],
                 queryRoleData : function (){
                     var self = this;
@@ -132,14 +134,18 @@
                     return true;
                 },
 
+                /**
+                 * 创建用户
+                 */
                 creatData : function (){
                     var self = this;
                     if(self.isAdopt()){
                         http.user.create({
                             data : self.userObj,
                             succ : function(rs){
+                                self.pushUser(self.userObj);
                                 self.toggleSideBar(false);
-                                common.tips('提交成功2','success',1500);
+                                common.tips('提交成功','success',1500);
                             },
                             err : function(msg){
                                 common.tips(msg,'error',1500);
@@ -148,6 +154,9 @@
                     }
                 },
 
+                /**
+                 * 更新用户
+                 */
                 updateData : function (){
                     var self = this;
                     if(self.isAdopt()){
@@ -172,12 +181,11 @@
             'lwc-form-botton' : require('../common/FormButton.vue')
         },
         ready : function () {
-
             var self = this;
             self.$watch("currentObj" , function (v) {
                 self.userObj = v;
-                v.id != 0 ? self.editObj = true : self.editObj = false; //设置是否为编辑
-                if (self.editObj) self.setCheckboxRaw(v.role);
+                v.id != 0 ? self.isEdit = true : self.isEdit = false; //设置是否为编辑
+                if (self.isEdit) self.setCheckboxRaw(v.role);
             });
 
             self.$watch("checkboxRaw" , function(raw){
@@ -188,7 +196,7 @@
         },
         methods : {
             submitForm : function(){
-                this.editObj ? this.updateData() : this.creatData();
+                this.isEdit ? this.updateData() : this.creatData();
             },
             showSideBar : function(state){
                 this.toggleSideBar(state);

@@ -43,7 +43,8 @@
 </template>
 
 <script>
-    var commonGetters = require('../../vuex/common/getters.js');
+    var roleGetters = require('../../vuex/role/getters.js');
+    var roleActions = require('../../vuex/role/actions.js');
     var addFormActions = require('../../vuex/addForm/actions.js');
 
     var http = require('../../utils/HttpHelper.js');
@@ -52,10 +53,12 @@
         data : function () {
             return {
                 roleObj : {
+                    id : 0,
                     name : " ",
                     display_name : " ",
                     description : " "
                 },
+                isEdit : false,
                 /**
                 * 数据的验证
                 */
@@ -74,15 +77,55 @@
                         return false;
                     }
                     return true;
-                }
+                },
+                /**
+                 * 创建角色
+                 */
+                creatData : function (){
+                    var self = this;
+                    if(self.isAdopt()){
+                        http.role.create({
+                            data : self.roleObj,
+                            succ : function(rs){
+                                self.pushRole(self.roleObj);
+                                self.toggleSideBar(false);
+                                common.tips('提交成功','success',1500);
+                            },
+                            err : function(msg){
+                                common.tips(msg,'error',1500);
+                            }
+                        });
+                    }
+                },
+                /**
+                 * 更新角色
+                 */
+                updateData : function (){
+                    var self = this;
+                    if(self.isAdopt()){
+                        http.role.save({
+                            key : [self.roleObj.id],
+                            data : self.roleObj,
+                            succ : function(rs){
+                                self.toggleSideBar(false);
+                                common.tips('提交成功','success',1500);
+                            },
+                            err : function(msg){
+                                common.tips(msg,'error',1500);
+                            }
+                        });
+                    }
+                }   
             }
         },
         vuex : {
             actions : {
-                toggleSideBar : addFormActions.toggleSideBarState
+                toggleSideBar : addFormActions.toggleSideBarState,
+                pushRole : roleActions.pushRole //添加角色
+
             },
             getters : {
-                currentObj : commonGetters.getCurrentObj, //获取当前对象
+                roleCurrentObj : roleGetters.getRoleCurrentObj, //获取当前对象
             }
         },
         components : {
@@ -91,26 +134,14 @@
         },
         ready : function () {
             var self = this;
-            self.$watch("currentObj" , function (v) {
+            self.$watch("roleCurrentObj" , function (v) {
                 self.roleObj = v;
+                v.id != 0 ? self.isEdit = true : self.isEdit = false; //设置是否为编辑
             });
         },
         methods : {
             submitForm : function(){
-                if(this.isAdopt()){
-                    http.role.save({
-                    key : [this.roleObj.id],
-                    data : this.roleObj,
-                    succ : function(rs){
-                        common.go('role');
-                        common.tips('提交成功','success',1500);
-
-                    },
-                    err : function(msg){
-                        common.tips(msg,'error',1500);
-                    }
-                });
-                }
+                this.isEdit ? this.updateData() : this.creatData();
             },
             showSideBar : function(state){
                 this.toggleSideBar(state);

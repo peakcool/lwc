@@ -91,6 +91,9 @@ module.exports = {
         },
         save : function(param){
             paramParse('save',['user'], param);
+        },
+        delete : function(param){
+            paramParse('delete',['user'], param);
         }
     },
     role : {
@@ -102,6 +105,9 @@ module.exports = {
         },
         save : function(param){
             paramParse('save',['role'], param);
+        },
+        delete : function(param){
+            paramParse('delete',['role'], param);
         }
     },
     permission : {
@@ -113,6 +119,9 @@ module.exports = {
         },
         save : function(param){
             paramParse('save',['permission'], param);
+        },
+        delete : function(param){
+            paramParse('delete',['permission'], param);
         }
     },
     action : {
@@ -124,6 +133,9 @@ module.exports = {
         },
         save : function(param){
             paramParse('save',['action'], param);
+        },
+        delete : function(param){
+            paramParse('delete',['action'], param);
         }
     },
     menu : {
@@ -135,6 +147,9 @@ module.exports = {
         },
         save : function(param){
             paramParse('save',['menu'], param);
+        },
+        delete : function(param){
+            paramParse('delete',['menu'], param);
         }
     },
     config : {
