@@ -1,5 +1,6 @@
 //创建对象来保存应用启动时的初始数据
 var state = {
+	isLogin : false,//标识是否已经登录
 	fixmodelState : false, //common/FixModel.vuex组件的状态［true:显示状态,false:关闭状态］
 	routerName : "menu", //页面路由名,默认为菜单MENU
 	paging : {
@@ -14,11 +15,15 @@ var state = {
 	formTitle : " ", //表单标题
 	setting : " ",
 	leftMenus : [],
-	checkobx_raw : []
+	checkobx_raw : [],
 };
 
 //创建对象存储一系列我们接下来要写的mutation函数
 var mutations = {
+	//切换登录得状态
+	TOGGLE_LOGIN : function(state){
+		state.isLogin = !state.isLogin;
+	},
 	//设置FixModel 组件的状态
 	TOGGLE_FIXMODEL_STATE : function(state,bool){
 		if(bool != undefined){
@@ -107,8 +112,6 @@ var mutations = {
 	 * @param {[object]} config [配置]
 	 */
 	SET_COMMON_SETTING : function (state, setting) {
-
-		// console.log('store:', setting);
 		state.setting = setting;
 	},
 

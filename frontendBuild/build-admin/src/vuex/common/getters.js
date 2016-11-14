@@ -45,5 +45,9 @@ module.exports = {
 
 	getCheckboxRaw : function (state) {
 		return state.common.checkobx_raw;
-	}
+	},
+
+	isLogin : function(state){
+		return state.common.isLogin;
+	},
 }

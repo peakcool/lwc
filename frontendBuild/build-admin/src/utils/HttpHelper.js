@@ -81,7 +81,14 @@ var paramParse = function(method, resourceName, param) {
 
 
 module.exports = {
-   
+    login : {
+        query : function(param){
+            paramParse('query', ['login'], param);
+        },
+        lg : function(param){
+            paramParse('create', ['login'], param);
+        }
+    },   
     user : {
         query: function (param) {
             paramParse('query', ['user'], param);

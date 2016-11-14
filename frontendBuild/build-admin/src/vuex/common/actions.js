@@ -72,6 +72,9 @@ module.exports = {
         return store.dispatch('SET_LEFT_MENUS', leftMenus);
     },
 
+    /**
+     * 设置复选框历史内容
+     */
     setCheckboxRaw : function (store, data) {
 
         var idList = [];            
@@ -79,5 +82,9 @@ module.exports = {
             idList.push(el.id + '');
         });
         return store.dispatch('SET_CHECKBOX_RAW', idList);
-    }
+    },
+
+    toggleLogin : function(store){
+        return store.dispatch('TOGGLE_LOGIN');
+    },
 }

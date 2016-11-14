@@ -1,0 +1,7 @@
+{
+	"status" : 200,
+	"msg" : 0,
+	"data" : {
+		"isLogin" : true
+	} 
+}
