@@ -80,7 +80,7 @@
 				isShowLogin : false,//当前是否展示登录框
 				formdata : {
 					name : '',
-					password : ''
+					password : ''  
 				},
 				initBtnTxt : function(){
 					this.btnTxt = '登 录';

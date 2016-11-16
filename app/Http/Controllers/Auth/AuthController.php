@@ -1,64 +1,111 @@
 <?php
+/**
+ * @Author   TangLiangcheng
+ * @DateTime 2016-11-15
+ */
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use Auth;
+use Validator;
 
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
+    use ThrottlesLogins;
 
-    use AuthenticatesAndRegistersUsers;
-
-    /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function postLogin(Request $request)
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+
+        $throttles = $this->isUsingThrottlesLoginsTrait();
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:6',
+            'password' => 'required|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            if ($throttles) {
+                $this->incrementLoginAttempts($request);
+            }
+            return response()->json(['status' => 500, 'msg' => '用户名或密码错误', 'data' => null]);
+        }
+
+        if ($throttles && $this->hasTooManyLoginAttempts($request)) {
+            return response()->json(['status' => 500, 'msg' => '您尝试登录错误次数太多,请稍后再试', 'data' => null]);
+
+        }
+
+        $credentials = $request->only('name', 'password');
+
+        if (Auth::attempt(['name' => $request->name, 'password' => $request->password])) {
+            return $this->handleUserWasAuthenticated($request, $throttles);
+        }
+
+        if ($throttles) {
+            $this->incrementLoginAttempts($request);
+        }
+
+        return response()->json(['status' => 500, 'msg' => '用户名或密码错误', 'data' => null]);
+
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * 判断当前是否是否防刷机制
+     * @return bool
      */
-    protected function validator(array $data)
+    protected function isUsingThrottlesLoginsTrait()
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+        return in_array(
+            ThrottlesLogins::class, class_uses_recursive(get_class($this))
+        );
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Send the response after the user was authenticated.
      *
-     * @param  array  $data
-     * @return User
+     * @param  \Illuminate\Http\Request $request
+     * @param  bool $throttles
+     * @return \Illuminate\Http\Response
      */
-    protected function create(array $data)
+    protected function handleUserWasAuthenticated(Request $request, $throttles)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        if ($throttles) {
+            $this->clearLoginAttempts($request);
+        }
+
+        if (method_exists($this, 'authenticated')) {
+            return $this->authenticated($request, Auth::user());
+        }
+
+
+        return response()->json(['status'=>200, 'msg'=>'', 'data'=>['name'=>Auth::user()->name,'isLogin' => true]]);
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function loginUsername()
+    {
+        return property_exists($this, 'username') ? $this->username : 'phone';
+    }
+
+    public function postLogout() {
+        Auth::logout();
+        return response()->json(['status'=>200, 'msg'=>'', 'data'=>array('isLogin' => false)]);
+    }
+
+    public function getLogin() {
+        if (Auth::check()) {
+            $rt = array('status' => 200, 'msg' => ' ', 'data' => array('isLogin' => true));
+        } else {
+            $rt = array('status' => 400, 'msg' => ' ', 'data' => array('isLogin' => false));
+        }
+
+        return response()->json($rt);
     }
 }

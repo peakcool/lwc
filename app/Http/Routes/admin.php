@@ -19,4 +19,7 @@ Route::resource('action', 'ActionController');
 Route::resource('config', 'ConfigController');
 
 /* 系统登录 */
-Route::resource('login', 'LoginController');
+// Route::resource('login', 'LoginController');
+
+/* 退出系统模块*/
+// Route::resource('logout', 'LogoutController');

@@ -1,26 +1,30 @@
 <style>
-    #main{
-        lwcition: relative;
+    #container,#main{        
         width: 100%;
+        height: 100%;
+    }
+    #main{
+        position: relative;
         min-height: 100%;
         height: auto;
     }
 </style>
 <template>
-    <!-- <div id="container"> -->
+    <div id="container">
         <lwc-login v-if="!isLogin"></lwc-login>
         <div id="main" v-else>
-        <!-- 头部 start -->
-        <lwc-header></lwc-header>
-        <!-- 头部  end  -->
-        <!-- 左侧导航 start -->
-        <lwc-aside></lwc-aside>
-        <!-- 左侧导航  end  -->
-        <!-- 右侧内容部分 start -->
-        <lwc-section></lwc-section>
-        <!-- 右侧内容部分  end  -->
+            <!-- 头部 start -->
+            <lwc-header></lwc-header>
+            <!-- 头部  end  -->
+            <!-- 左侧导航 start -->
+            <lwc-aside></lwc-aside>
+            <!-- 左侧导航  end  -->
+            <!-- 右侧内容部分 start -->
+            <lwc-section></lwc-section>
+            <!-- 右侧内容部分  end  -->
         </div>
-    <!-- </div> -->
+    </div>
+
 </template>
 <script>
     var commonGetter = require('./vuex/common/getters.js');

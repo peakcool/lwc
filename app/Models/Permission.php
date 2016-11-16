@@ -1,11 +1,13 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Zizaco\Entrust\EntrustPermission;
+use App\Traits\Model\MenuBelongsToManyTrait;
+use App\Traits\Model\ActionBelongsToManyTrait;
 
-class Permission extends Model
+class Permission extends EntrustPermission
 {
+    use MenuBelongsToManyTrait, ActionBelongsToManyTrait;
     /**
      * 限制读取字段
      *

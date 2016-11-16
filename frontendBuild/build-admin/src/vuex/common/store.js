@@ -20,7 +20,9 @@ var state = {
 
 //创建对象存储一系列我们接下来要写的mutation函数
 var mutations = {
-	//切换登录得状态
+	/**
+     * 登录状态
+     */
 	TOGGLE_LOGIN : function(state){
 		state.isLogin = !state.isLogin;
 	},

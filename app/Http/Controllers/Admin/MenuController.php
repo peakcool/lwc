@@ -7,16 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Menu;
+use App\Facades\MenuRepository;
 class MenuController extends Controller
 {
     
-    /**
-     * init menu model
-     */
-    function __construct() {
-        $this->menu = new Menu;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,16 +18,9 @@ class MenuController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('page')){
-            $input = $request->input();
-            // $input['diypages'] = $request->has('diypages') ? $input['diypages'] : 10; //自定义每页显示数目 10/30/50...
-        }
-        if ($request->has('keyword')) { //关键字搜索
-            $keyword = $request->input('keyword');
-            $res = $this->menu->where('name','like','%'.$keyword.'%')->paginate(20)->toArray();
-        } else {
-            $res = $this->menu->paginate(20)->toArray();
-        }
+        $perpage = $request->perpage <= 100 ? $request->perpage : 10;
+
+        $data = MenuRepository::paginate($perpage)->toArray();
 
         if (!$res) {
             $rt = array(
@@ -118,6 +105,15 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $childMenus = MenuRepository::getChildMenusById($id);
+        if(!empty($childMenus)){
+            return response()->json(['status' => 400, 'msg' => '请先删除其下级分类']);
+        }
+
+        if (MenuRepository::destroy($id)) {
+            return response()->json(['status' => 200, 'msg' => '删除菜单成功']);
+        } else {
+            return response()->json(['status' => 400, 'msg' => '删除菜单失败']);
+        }
     }
 }

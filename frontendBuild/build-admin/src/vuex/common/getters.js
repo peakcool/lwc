@@ -43,10 +43,16 @@ module.exports = {
 		return state.common.leftMenus;
 	},
 
+	/**
+	 * 设置checkbox原始ID LIST
+	 */
 	getCheckboxRaw : function (state) {
 		return state.common.checkobx_raw;
 	},
 
+	/**
+     * 登录状态
+     */
 	isLogin : function(state){
 		return state.common.isLogin;
 	},

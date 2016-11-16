@@ -73,7 +73,7 @@ module.exports = {
     },
 
     /**
-     * 设置复选框历史内容
+     * 设置checkbox原始ID LIST
      */
     setCheckboxRaw : function (store, data) {
 
@@ -84,6 +84,9 @@ module.exports = {
         return store.dispatch('SET_CHECKBOX_RAW', idList);
     },
 
+    /**
+     * 登录状态
+     */
     toggleLogin : function(store){
         return store.dispatch('TOGGLE_LOGIN');
     },
