@@ -6,16 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Role;
+use App\Facades\RoleRepository;
 
 class RoleController extends Controller
 {
-    /**
-     * init Role model
-     */
-    function __construct() {
-        $this->Role = new Role;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,31 +17,18 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('page')){
-            $input = $request->input();
-            // $input['diypages'] = $request->has('diypages') ? $input['diypages'] : 10; //自定义每页显示数目 10/30/50...
-        }
-        if ($request->has('keyword')) { //关键字搜索
-            $keyword = $request->input('keyword');
-            $res = $this->Role->where('name','like','%'.$keyword.'%')->paginate(10)->toArray();
-        } else {
-            $res = $this->Role->paginate(10)->toArray();
-        }
-
-        if (!$res) {
-            $rt = array(
-                'status' => 400,
-                'msg' => '没有对应数据'
-            );
-
+        $perpage = $request->perpage <= 100 ? $request->perpage : 10;
+        $data = RoleRepository::paginate($perpage)->toArray();
+        if (!$data) {
+            $rt = array('status' => 400,'msg' => '没有对应数据');
         } else {
             $rt = array(
                 'status' => 200,
                 'msg' => '',
                 'data' => array(
-                    'total' => $res['last_page'],
-                    'page' => $res['current_page'],
-                    'list' => $res['data']
+                    'total' => $data['last_page'],
+                    'page' => $data['current_page'],
+                    'list' => $data['data']
                 )
             );
         }
@@ -117,6 +98,10 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (RoleRepository::destroy($id)) {
+            return response()->json(['status' => 200, 'msg' => '删除角色成功']);
+        } else {
+            return response()->json(['status' => 400, 'msg' => '删除角色失败']);
+        }
     }
 }

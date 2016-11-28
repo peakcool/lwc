@@ -12,8 +12,9 @@
 	                	<tr>
 	                        <th>用户ID</th>
 	                        <th>用户名称</th>
-	                        <th>用户邮箱</th>
-	                        <th>用户角色</th>
+	                        <!-- <th>用户邮箱</th> -->
+	                        <th>所属门店</th>
+	                        <th>注册时间</th>
 	                        <th></th>
 	                    </tr>
 	                </thead>
@@ -21,12 +22,14 @@
 	                	<tr v-for="user in userList">
 	                        <td>{{ user.id }}</td>
 	                        <td>{{ user.name }}</td>
-	                        <td>{{ user.email }}</td>
-	                        <td>
+	                        <td>金牛店</td>
+	                        <td>{{ user.joindate }}</td>
+	                        <!-- <td>{{ user.email }}</td> -->
+	                        <!-- <td>
 	                        	<span v-for="role in user.role">
 	                        		{{ role.display_name }}
 	                        	</span>
-	                        </td>
+	                        </td> -->
 	                        <td class="table-action">
 	                            <button type="button" class="btn btn-success" @click="showSideBar(user)">编辑</button>
 	                            <button type="button" class="btn btn-danger" @click="deleteCurrent(user)">删除</button>

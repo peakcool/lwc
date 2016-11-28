@@ -6,16 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Facades\UserRepository;
+use Auth;
 
 class UserController extends Controller
 {
-    /**
-     * init user model
-     */
-    function __construct() {
-        $this->user = new User;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,31 +18,18 @@ class UserController extends Controller
      */
     public function index(request $request)
     {
-        if ($request->has('page')){
-            $input = $request->input();
-            // $input['diypages'] = $request->has('diypages') ? $input['diypages'] : 10; //自定义每页显示数目 10/30/50...
-        }
-        if ($request->has('keyword')) { //关键字搜索
-            $keyword = $request->input('keyword');
-            $res = $this->user->with('role')->where('name','like','%'.$keyword.'%')->paginate(10)->toArray();
-        } else {
-            $res = $this->user->with('role')->paginate(10)->toArray();
-        }
-
-        if (!$res) {
-            $rt = array(
-                'status' => 400,
-                'msg' => '没有对应数据'
-            );
-
+        $perpage = $request->perpage <= 100 ? $request->perpage : 10;
+        $data = UserRepository::paginate($perpage)->toArray();
+        if (!$data) {
+            $rt = array('status' => 400,'msg' => '没有对应数据');
         } else {
             $rt = array(
                 'status' => 200,
                 'msg' => '',
                 'data' => array(
-                    'total' => $res['last_page'],
-                    'page' => $res['current_page'],
-                    'list' => $res['data']
+                    'total' => $data['last_page'],
+                    'page' => $data['current_page'],
+                    'list' => $data['data']
                 )
             );
         }
@@ -106,7 +88,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($id != Auth::user()->id && Auth::user()->is_super_admin == 0) {
+            $rt = array('status' => 400, 'msg' => "只允许编辑自身资料");
+        }
+
+        // $user = UserRepository::find($id);
+        // $user->name = $request->name;
+        // $user->
     }
 
     /**
@@ -117,6 +105,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (UserRepository::destroy($id)) {
+            return response()->json(['status' => 200, 'msg' => '删除用户成功']);
+        } else {
+            return response()->json(['status' => 400, 'msg' => '删除用户失败']);
+        }
     }
 }

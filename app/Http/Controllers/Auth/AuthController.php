@@ -80,7 +80,6 @@ class AuthController extends Controller
             return $this->authenticated($request, Auth::user());
         }
 
-
         return response()->json(['status'=>200, 'msg'=>'', 'data'=>['name'=>Auth::user()->name,'isLogin' => true]]);
     }
 

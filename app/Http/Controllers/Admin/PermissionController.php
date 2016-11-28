@@ -6,16 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Permission;
+use App\Facades\PermissionRepository;
+use App\Events\Cache\ClearUserPermissionCacheEvent;
 
 class PermissionController extends Controller
 {
-    /**
-     * init permission model
-     */
-    function __construct() {
-        $this->permission = new Permission;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,31 +18,18 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('page')){
-            $input = $request->input();
-            // $input['diypages'] = $request->has('diypages') ? $input['diypages'] : 10; //自定义每页显示数目 10/30/50...
-        }
-        if ($request->has('keyword')) { //关键字搜索
-            $keyword = $request->input('keyword');
-            $res = $this->permission->where('name','like','%'.$keyword.'%')->paginate(10)->toArray();
-        } else {
-            $res = $this->permission->paginate(10)->toArray();
-        }
-
-        if (!$res) {
-            $rt = array(
-                'status' => 400,
-                'msg' => '没有对应数据'
-            );
-
+        $perpage = $request->perpage <= 100 ? $request->perpage : 10;
+        $data = PermissionRepository::paginate($perpage)->toArray();
+        if (!$data) {
+            $rt = array('status' => 400,'msg' => '没有对应数据');
         } else {
             $rt = array(
                 'status' => 200,
                 'msg' => '',
                 'data' => array(
-                    'total' => $res['last_page'],
-                    'page' => $res['current_page'],
-                    'list' => $res['data']
+                    'total' => $data['last_page'],
+                    'page' => $data['current_page'],
+                    'list' => $data['data']
                 )
             );
         }
@@ -117,6 +99,11 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (PermissionRepository::destroy($id)) {
+            event(new ClearUserPermissionCacheEvent());
+            return response()->json(['status' => 200, 'msg' => '删除菜单成功']);
+        } else {
+            return response()->json(['status' => 400, 'msg' => '删除菜单失败']);
+        }
     }
 }

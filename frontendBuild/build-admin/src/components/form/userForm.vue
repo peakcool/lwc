@@ -13,7 +13,7 @@
             :value.sync="userObj.name">
         </lwc-input>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="email">用户邮箱</label>
         <lwc-input
             type="text"
@@ -22,7 +22,7 @@
             tips="*"
             :value.sync="userObj.email">
         </lwc-input>
-    </div>
+    </div> -->
     <div class="form-group" v-show="isEdit">
         <label for="password" >原始密码</label>
         <lwc-input
@@ -114,8 +114,6 @@
                 */
                 isAdopt : function(){
 
-                    console.log(this.userObj.name);
-                    console.log($.isEmptyObject(this.userObj.name));
                     if($.isEmptyObject(this.userObj.name)){
                         common.tips('用户名称不能为空','error',1500);
                         return false;

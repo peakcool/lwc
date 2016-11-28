@@ -18,8 +18,3 @@ Route::resource('action', 'ActionController');
 /* 系统配置项 */
 Route::resource('config', 'ConfigController');
 
-/* 系统登录 */
-// Route::resource('login', 'LoginController');
-
-/* 退出系统模块*/
-// Route::resource('logout', 'LogoutController');

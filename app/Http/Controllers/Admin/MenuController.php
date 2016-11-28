@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Facades\MenuRepository;
 class MenuController extends Controller
 {
@@ -19,23 +18,17 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         $perpage = $request->perpage <= 100 ? $request->perpage : 10;
-
         $data = MenuRepository::paginate($perpage)->toArray();
-
-        if (!$res) {
-            $rt = array(
-                'status' => 400,
-                'msg' => '没有对应数据'
-            );
-
+        if (!$data) {
+            $rt = array('status' => 400,'msg' => '没有对应数据');
         } else {
             $rt = array(
                 'status' => 200,
                 'msg' => '',
                 'data' => array(
-                    'total' => $res['last_page'],
-                    'page' => $res['current_page'],
-                    'list' => $res['data']
+                    'total' => $data['last_page'],
+                    'page' => $data['current_page'],
+                    'list' => $data['data']
                 )
             );
         }
